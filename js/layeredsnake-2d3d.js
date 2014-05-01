@@ -62,6 +62,24 @@ function draw(){
     );
 }
 
+function generate_layers(){
+    layers.length = 0;
+
+    var loop_counter = 99;
+    do{
+        layers.push([
+          random_number(width) - 50,
+          random_number(height) - 50,
+          '#' + random_hex() + random_hex() + random_hex(),
+          0,
+          0
+        ]);
+    }while(loop_counter--);
+
+    layers[0][0] = mouse_x - 50;
+    layers[0][1] = mouse_y - 50;
+}
+
 function random_hex(){
     return '0123456789abcdef'.charAt(random_number(16));
 }
@@ -91,22 +109,14 @@ var width = 0;
 window.onresize = resize;
 resize();
 
-// create all layers
-var loop_counter = 99;
-do{
-    layers.push([
-      random_number(width) - 50,
-      random_number(height) - 50,
-      '#' + random_hex() + random_hex() + random_hex(),
-      width / 2,
-      height / 2
-    ]);
-}while(loop_counter--);
+generate_layers();
 
 setInterval(
   'draw()',
   50
 );
+
+window.onkeydown = generate_layers;
 
 window.onmousemove = function(e){
     layers[0][0] = mouse_x - 50;
