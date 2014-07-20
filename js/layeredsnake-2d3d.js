@@ -68,8 +68,8 @@ function generate_layers(){
     var loop_counter = 99;
     do{
         layers.push([
-          random_number(width) - 50,
-          random_number(height) - 50,
+          Math.floor(Math.random() * width) - 50,
+          Math.floor(Math.random() * height) - 50,
           '#' + random_hex() + random_hex() + random_hex(),
           0,
           0
@@ -81,11 +81,7 @@ function generate_layers(){
 }
 
 function random_hex(){
-    return '0123456789abcdef'.charAt(random_number(16));
-}
-
-function random_number(i){
-    return Math.floor(Math.random() * i);
+    return '0123456789abcdef'.charAt(Math.floor(Math.random() * 16));
 }
 
 function resize(){
