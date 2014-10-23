@@ -6,10 +6,11 @@ function draw(){
       height
     );
 
+    // Draw layers.
     var loop_counter = layers.length - 1;
     do{
         if(loop_counter > 0){
-            // calculate move towards target
+            // Calculate movement towards parent layer.
             var dx = Math.abs(layers[loop_counter][0] - layers[loop_counter][3]);
             var dy = Math.abs(layers[loop_counter][1] - layers[loop_counter][4]);
 
@@ -26,19 +27,21 @@ function draw(){
                 dy = 2;
             }
 
-            // move
-            layers[loop_counter][0] += layers[loop_counter][0] > layers[loop_counter][3]
-              ? -dx
-              : dx;
-            layers[loop_counter][1] += layers[loop_counter][1] > layers[loop_counter][4]
-              ? -dy
-              : dy;
+            // Move towards parent layer.
+            layers[loop_counter][0] +=
+              layers[loop_counter][0] > layers[loop_counter][3]
+                ? -dx
+                : dx;
+            layers[loop_counter][1] +=
+              layers[loop_counter][1] > layers[loop_counter][4]
+                ? -dy
+                : dy;
 
-            // set new target
+            // Remember position of parent layer.
             layers[loop_counter][3] = layers[loop_counter - 1][0];
             layers[loop_counter][4] = layers[loop_counter - 1][1];
 
-            // draw
+            // Draw layer.
             buffer.fillStyle = layers[loop_counter][2];
             buffer.fillRect(
               layers[loop_counter][0],
@@ -65,6 +68,7 @@ function draw(){
 function generate_layers(){
     layers.length = 0;
 
+    // Generate 100 layers.
     var loop_counter = 99;
     do{
         layers.push([
@@ -72,10 +76,11 @@ function generate_layers(){
           Math.floor(Math.random() * height) - 50,
           '#' + random_hex() + random_hex() + random_hex(),
           0,
-          0
+          0,
         ]);
     }while(loop_counter--);
 
+    // Set target position of topmost layer to current mouse position.
     layers[0][0] = mouse_x - 50;
     layers[0][1] = mouse_y - 50;
 }
@@ -115,6 +120,7 @@ setInterval(
 window.onkeydown = generate_layers;
 
 window.onmousemove = function(e){
+    // Set target position of topmost layer to current mouse position.
     layers[0][0] = mouse_x - 50;
     layers[0][1] = mouse_y - 50;
 
