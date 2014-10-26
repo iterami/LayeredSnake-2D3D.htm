@@ -74,7 +74,7 @@ function generate_layers(){
         layers.push([
           Math.floor(Math.random() * width) - 50,
           Math.floor(Math.random() * height) - 50,
-          '#' + random_hex() + random_hex() + random_hex(),
+          random_hex(),
           0,
           0,
         ]);
@@ -86,7 +86,11 @@ function generate_layers(){
 }
 
 function random_hex(){
-    return '0123456789abcdef'.charAt(Math.floor(Math.random() * 16));
+    var choices = '0123456789abcdef';
+    return '#'
+      + choices.charAt(Math.floor(Math.random() * 16))
+      + choices.charAt(Math.floor(Math.random() * 16))
+      + choices.charAt(Math.floor(Math.random() * 16));
 }
 
 function resize(){
