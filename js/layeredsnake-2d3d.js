@@ -82,9 +82,10 @@ function generate_layers(){
         ]);
     }while(loop_counter--);
 
-    // Set target position of topmost layer to current mouse position.
-    layers[0][0] = mouse_x - 50;
-    layers[0][1] = mouse_y - 50;
+    set_target(
+      mouse_x - 50,
+      mouse_y - 50
+    );
 }
 
 function init(){
@@ -114,6 +115,11 @@ function resize(){
     document.getElementById('canvas').width = width;
 }
 
+function set_target(x, y){
+    layers[0][0] = x;
+    layers[0][1] = y;
+}
+
 var buffer = document.getElementById('buffer').getContext('2d');
 var canvas = document.getElementById('canvas').getContext('2d');
 var height = 0;
@@ -129,10 +135,12 @@ window.onkeydown = generate_layers;
 
 window.onload = init;
 
-window.onmousemove = function(e){
-    // Set target position of topmost layer to current mouse position.
-    layers[0][0] = mouse_x - 50;
-    layers[0][1] = mouse_y - 50;
+window.onmousemove =
+  window.ontouchstart = function(e){
+    set_target(
+      mouse_x - 50,
+      mouse_y - 50
+    );
 
     mouse_x = e.pageX;
     mouse_y = e.pageY;
