@@ -13,6 +13,70 @@ function draw(){
             continue;
         }
 
+        // Draw layer.
+        buffer.fillStyle = layers[loop_counter][2];
+        buffer.fillRect(
+          layers[loop_counter][0],
+          layers[loop_counter][1],
+          100,
+          100
+        );
+    }while(loop_counter--);
+
+    canvas.clearRect(
+      0,
+      0,
+      width,
+      height
+    );
+    canvas.drawImage(
+      document.getElementById('buffer'),
+      0,
+      0
+    );
+
+    window.requestAnimationFrame(draw);
+}
+
+function generate_layers(){
+    layers.length = 0;
+
+    // Generate 100 layers.
+    var loop_counter = 99;
+    do{
+        layers.push([
+          Math.floor(Math.random() * width) - 50,
+          Math.floor(Math.random() * height) - 50,
+          random_hex(),
+          0,
+          0,
+        ]);
+    }while(loop_counter--);
+
+    set_target(
+      mouse_x - 50,
+      mouse_y - 50
+    );
+}
+
+function init(){
+    generate_layers();
+
+    window.requestAnimationFrame(draw);
+    setInterval(
+      'logic()',
+      50
+    );
+}
+
+function logic(){
+    // Draw layers.
+    var loop_counter = layers.length - 1;
+    do{
+        if(loop_counter <= 0){
+            continue;
+        }
+
         // Calculate movement towards parent layer.
         var dx = Math.abs(layers[loop_counter][0] - layers[loop_counter][3]);
         var dy = Math.abs(layers[loop_counter][1] - layers[loop_counter][4]);
@@ -43,58 +107,7 @@ function draw(){
         // Remember position of parent layer.
         layers[loop_counter][3] = layers[loop_counter - 1][0];
         layers[loop_counter][4] = layers[loop_counter - 1][1];
-
-        // Draw layer.
-        buffer.fillStyle = layers[loop_counter][2];
-        buffer.fillRect(
-          layers[loop_counter][0],
-          layers[loop_counter][1],
-          100,
-          100
-        );
     }while(loop_counter--);
-
-    canvas.clearRect(
-      0,
-      0,
-      width,
-      height
-    );
-    canvas.drawImage(
-      document.getElementById('buffer'),
-      0,
-      0
-    );
-}
-
-function generate_layers(){
-    layers.length = 0;
-
-    // Generate 100 layers.
-    var loop_counter = 99;
-    do{
-        layers.push([
-          Math.floor(Math.random() * width) - 50,
-          Math.floor(Math.random() * height) - 50,
-          random_hex(),
-          0,
-          0,
-        ]);
-    }while(loop_counter--);
-
-    set_target(
-      mouse_x - 50,
-      mouse_y - 50
-    );
-}
-
-function init(){
-    generate_layers();
-
-    setInterval(
-      'draw()',
-      50
-    );
 }
 
 function random_hex(){
