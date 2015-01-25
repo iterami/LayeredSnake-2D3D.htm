@@ -59,16 +59,6 @@ function generate_layers(){
     );
 }
 
-function init(){
-    generate_layers();
-
-    window.requestAnimationFrame(draw);
-    setInterval(
-      'logic()',
-      50
-    );
-}
-
 function logic(){
     // Draw layers.
     var loop_counter = layers.length - 1;
@@ -146,7 +136,15 @@ resize();
 
 window.onkeydown = generate_layers;
 
-window.onload = init;
+window.onload = function(){
+    generate_layers();
+
+    window.requestAnimationFrame(draw);
+    setInterval(
+      'logic()',
+      50
+    );
+};
 
 window.onmousemove =
   window.ontouchstart = function(e){
