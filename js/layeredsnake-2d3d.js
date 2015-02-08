@@ -140,7 +140,7 @@ window.onload = function(){
     generate_layers();
 
     window.requestAnimationFrame(draw);
-    setInterval(
+    window.setInterval(
       'logic()',
       50
     );
