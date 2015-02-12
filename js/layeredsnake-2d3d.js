@@ -10,7 +10,7 @@ function draw(){
     var loop_counter = layers.length - 1;
     do{
         if(loop_counter <= 0){
-            continue;
+            break;
         }
 
         // Draw layer.
@@ -64,7 +64,7 @@ function logic(){
     var loop_counter = layers.length - 1;
     do{
         if(loop_counter <= 0){
-            continue;
+            break;
         }
 
         // Calculate movement towards parent layer.
