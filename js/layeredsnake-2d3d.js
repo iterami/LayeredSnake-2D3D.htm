@@ -131,12 +131,11 @@ var mouse_x = 0;
 var mouse_y = 0;
 var width = 0;
 
-window.onresize = resize;
-resize();
-
 window.onkeydown = generate_layers;
 
 window.onload = function(){
+    resize();
+
     generate_layers();
 
     window.requestAnimationFrame(draw);
@@ -156,3 +155,5 @@ window.onmousemove =
     mouse_x = e.pageX;
     mouse_y = e.pageY;
 };
+
+window.onresize = resize;
