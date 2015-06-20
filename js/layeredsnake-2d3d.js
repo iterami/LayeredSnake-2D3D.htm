@@ -14,10 +14,10 @@ function draw(){
         }
 
         // Draw layer.
-        buffer.fillStyle = layers[loop_counter][2];
+        buffer.fillStyle = layers[loop_counter]['color'];
         buffer.fillRect(
-          layers[loop_counter][0],
-          layers[loop_counter][1],
+          layers[loop_counter]['x'],
+          layers[loop_counter]['y'],
           100,
           100
         );
@@ -44,13 +44,13 @@ function generate_layers(){
     // Generate 100 layers.
     var loop_counter = 99;
     do{
-        layers.push([
-          Math.floor(Math.random() * width) - 50,
-          Math.floor(Math.random() * height) - 50,
-          random_hex(),
-          0,
-          0,
-        ]);
+        layers.push({
+          'color': random_hex(),
+          'parent-x': 0,
+          'parent-y': 0,
+          'x': Math.floor(Math.random() * width) - 50,
+          'y': Math.floor(Math.random() * height) - 50,
+        });
     }while(loop_counter--);
 
     set_target(
@@ -68,8 +68,8 @@ function logic(){
         }
 
         // Calculate movement towards parent layer.
-        var dx = Math.abs(layers[loop_counter][0] - layers[loop_counter][3]);
-        var dy = Math.abs(layers[loop_counter][1] - layers[loop_counter][4]);
+        var dx = Math.abs(layers[loop_counter]['x'] - layers[loop_counter]['parent-x']);
+        var dy = Math.abs(layers[loop_counter]['y'] - layers[loop_counter]['parent-y']);
 
         if(dx > dy){
             dy = dy / dx * 5;
@@ -85,18 +85,18 @@ function logic(){
         }
 
         // Move towards parent layer.
-        layers[loop_counter][0] +=
-          layers[loop_counter][0] > layers[loop_counter][3]
+        layers[loop_counter]['x'] +=
+          layers[loop_counter]['x'] > layers[loop_counter]['parent-x']
             ? -dx
             : dx;
-        layers[loop_counter][1] +=
-          layers[loop_counter][1] > layers[loop_counter][4]
+        layers[loop_counter]['y'] +=
+          layers[loop_counter]['y'] > layers[loop_counter]['parent-y']
             ? -dy
             : dy;
 
         // Remember position of parent layer.
-        layers[loop_counter][3] = layers[loop_counter - 1][0];
-        layers[loop_counter][4] = layers[loop_counter - 1][1];
+        layers[loop_counter]['parent-x'] = layers[loop_counter - 1]['x'];
+        layers[loop_counter]['parent-y'] = layers[loop_counter - 1]['y'];
     }while(loop_counter--);
 }
 
@@ -119,8 +119,8 @@ function resize(){
 }
 
 function set_target(x, y){
-    layers[0][0] = x;
-    layers[0][1] = y;
+    layers[0]['x'] = x;
+    layers[0]['y'] = y;
 }
 
 var buffer = document.getElementById('buffer').getContext('2d');
