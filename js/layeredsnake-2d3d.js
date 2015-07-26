@@ -70,21 +70,12 @@ function logic(){
         }
 
         // Calculate movement towards parent layer.
-        var dx = Math.abs(layers[loop_counter]['x'] - layers[loop_counter]['parent-x']);
-        var dy = Math.abs(layers[loop_counter]['y'] - layers[loop_counter]['parent-y']);
-
-        if(dx > dy){
-            dy = dy / dx * 5;
-            dx = 5;
-
-        }else if(dy > dx){
-            dx = dx / dy * 5;
-            dy = 5;
-
-        }else{
-            dx = 2;
-            dy = 2;
-        }
+        var angle = Math.atan(
+          Math.abs(layers[loop_counter]['y'] - layers[loop_counter]['parent-y'])
+            / Math.abs(layers[loop_counter]['x'] - layers[loop_counter]['parent-x'])
+        );
+        var dx = Math.cos(angle) * 5;
+        var dy = Math.sin(angle) * 5;
 
         // Move towards parent layer.
         layers[loop_counter]['x'] +=
