@@ -62,7 +62,7 @@ function generate_layers(){
 }
 
 function logic(){
-    // Draw layers.
+    // Handle layers.
     var loop_counter = layers.length - 1;
     do{
         if(loop_counter <= 0){
