@@ -124,7 +124,8 @@ var mouse_x = 0;
 var mouse_y = 0;
 var width = 0;
 
-window.onkeydown = generate_layers;
+window.onkeydown =
+  window.onmousedown = generate_layers;
 
 window.onload = function(){
     resize();
