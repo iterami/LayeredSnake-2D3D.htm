@@ -116,8 +116,12 @@ function set_target(x, y){
     layers[0]['y'] = y;
 }
 
-var buffer = document.getElementById('buffer').getContext('2d');
-var canvas = document.getElementById('canvas').getContext('2d');
+var buffer = document.getElementById('buffer').getContext('2d', {
+  'alpha': false,
+});
+var canvas = document.getElementById('canvas').getContext('2d', {
+  'alpha': false,
+});
 var height = 0;
 var layers = [];
 var mouse_x = 0;
