@@ -74,18 +74,18 @@ function logic(){
           Math.abs(layers[loop_counter]['y'] - layers[loop_counter]['parent-y'])
             / Math.abs(layers[loop_counter]['x'] - layers[loop_counter]['parent-x'])
         );
-        var dx = Math.cos(angle) * 5;
-        var dy = Math.sin(angle) * 5;
+        var dx = Math.cos(angle) *
+          (layers[loop_counter]['x'] > layers[loop_counter]['parent-x']
+            ? -5
+            : 5);
+        var dy = Math.sin(angle) *
+          (layers[loop_counter]['y'] > layers[loop_counter]['parent-y']
+            ? -5
+            : 5);
 
         // Move towards parent layer.
-        layers[loop_counter]['x'] +=
-          layers[loop_counter]['x'] > layers[loop_counter]['parent-x']
-            ? -dx
-            : dx;
-        layers[loop_counter]['y'] +=
-          layers[loop_counter]['y'] > layers[loop_counter]['parent-y']
-            ? -dy
-            : dy;
+        layers[loop_counter]['x'] += dx;
+        layers[loop_counter]['y'] += dy;
 
         // Remember position of parent layer.
         layers[loop_counter]['parent-x'] = layers[loop_counter - 1]['x'];
@@ -133,7 +133,6 @@ window.onkeydown =
 
 window.onload = function(){
     resize();
-
     generate_layers();
 
     window.requestAnimationFrame(draw);
