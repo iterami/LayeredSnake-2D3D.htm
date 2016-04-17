@@ -80,9 +80,6 @@ function random_hex(){
       + choices.charAt(Math.floor(Math.random() * 16));
 }
 
-function resize_logic(){
-}
-
 function set_target(x, y){
     layers[0]['x'] = x;
     layers[0]['y'] = y;
