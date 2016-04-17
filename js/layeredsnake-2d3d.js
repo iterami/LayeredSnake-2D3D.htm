@@ -110,5 +110,3 @@ window.onmousemove =
     mouse_x = e.pageX;
     mouse_y = e.pageY;
 };
-
-window.onresize = resize;
