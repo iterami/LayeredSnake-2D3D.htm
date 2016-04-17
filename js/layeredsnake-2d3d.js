@@ -1,13 +1,6 @@
 'use strict';
 
-function draw(){
-    buffer.clearRect(
-      0,
-      0,
-      width,
-      height
-    );
-
+function draw_logic(){
     // Draw layers.
     var loop_counter = layers.length - 1;
     do{
@@ -24,20 +17,6 @@ function draw(){
           100
         );
     }while(loop_counter--);
-
-    canvas.clearRect(
-      0,
-      0,
-      width,
-      height
-    );
-    canvas.drawImage(
-      document.getElementById('buffer'),
-      0,
-      0
-    );
-
-    window.requestAnimationFrame(draw);
 }
 
 function generate_layers(){
@@ -101,14 +80,7 @@ function random_hex(){
       + choices.charAt(Math.floor(Math.random() * 16));
 }
 
-function resize(){
-    height = window.innerHeight;
-    document.getElementById('buffer').height = height;
-    document.getElementById('canvas').height = height;
-
-    width = window.innerWidth;
-    document.getElementById('buffer').width = width;
-    document.getElementById('canvas').width = width;
+function resize_logic(){
 }
 
 function set_target(x, y){
@@ -116,30 +88,16 @@ function set_target(x, y){
     layers[0]['y'] = y;
 }
 
-var buffer = document.getElementById('buffer').getContext('2d', {
-  'alpha': false,
-});
-var canvas = document.getElementById('canvas').getContext('2d', {
-  'alpha': false,
-});
-var height = 0;
 var layers = [];
 var mouse_x = 0;
 var mouse_y = 0;
-var width = 0;
 
 window.onkeydown =
   window.onmousedown = generate_layers;
 
 window.onload = function(){
-    resize();
+    init_canvas();
     generate_layers();
-
-    window.requestAnimationFrame(draw);
-    window.setInterval(
-      logic,
-      50
-    );
 };
 
 window.onmousemove =
