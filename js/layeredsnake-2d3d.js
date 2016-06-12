@@ -27,8 +27,6 @@ function generate_layers(){
     do{
         layers.push({
           'color': random_hex(),
-          'parent-x': 0,
-          'parent-y': 0,
           'x': Math.floor(Math.random() * width) - 50,
           'y': Math.floor(Math.random() * height) - 50,
         });
@@ -41,34 +39,30 @@ function generate_layers(){
 }
 
 function logic(){
-    // Handle layers.
     var loop_counter = layers.length - 1;
     do{
         if(loop_counter <= 0){
             break;
         }
 
-        // Calculate movement towards parent layer.
+        // Calculate movement towards previous layer.
+        var previous = loop_counter - 1;
         var angle = Math.atan(
-          Math.abs(layers[loop_counter]['y'] - layers[loop_counter]['parent-y'])
-            / Math.abs(layers[loop_counter]['x'] - layers[loop_counter]['parent-x'])
+          Math.abs(layers[loop_counter]['y'] - layers[previous]['y'])
+            / Math.abs(layers[loop_counter]['x'] - layers[previous]['x'])
         );
         var dx = Math.cos(angle) *
-          (layers[loop_counter]['x'] > layers[loop_counter]['parent-x']
+          (layers[loop_counter]['x'] > layers[previous]['x']
             ? -5
             : 5);
         var dy = Math.sin(angle) *
-          (layers[loop_counter]['y'] > layers[loop_counter]['parent-y']
+          (layers[loop_counter]['y'] > layers[previous]['y']
             ? -5
             : 5);
 
-        // Move towards parent layer.
+        // Move towards previous layer.
         layers[loop_counter]['x'] += dx;
         layers[loop_counter]['y'] += dy;
-
-        // Remember position of parent layer.
-        layers[loop_counter]['parent-x'] = layers[loop_counter - 1]['x'];
-        layers[loop_counter]['parent-y'] = layers[loop_counter - 1]['y'];
     }while(loop_counter--);
 }
 
@@ -99,11 +93,11 @@ window.onload = function(){
 
 window.onmousemove =
   window.ontouchstart = function(e){
+    mouse_x = e.pageX;
+    mouse_y = e.pageY;
+
     set_target(
       mouse_x - 50,
       mouse_y - 50
     );
-
-    mouse_x = e.pageX;
-    mouse_y = e.pageY;
 };
