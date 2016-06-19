@@ -33,8 +33,8 @@ function generate_layers(){
     }while(loop_counter--);
 
     set_target(
-      mouse_x - 50,
-      mouse_y - 50
+      mouse['x'] - 50,
+      mouse['y'] - 50
     );
 }
 
@@ -80,24 +80,35 @@ function set_target(x, y){
 }
 
 var layers = [];
-var mouse_x = 0;
-var mouse_y = 0;
-
-window.onkeydown =
-  window.onmousedown = generate_layers;
 
 window.onload = function(){
     init_canvas();
-    generate_layers();
-};
+    init_input(
+      {
+        'all': {
+          'todo': generate_layers,
+        },
+      },
+      {
+        'mousedown': {
+          'todo': function(){
+              generate_layers();
 
-window.onmousemove =
-  window.ontouchstart = function(e){
-    mouse_x = e.pageX;
-    mouse_y = e.pageY;
-
-    set_target(
-      mouse_x - 50,
-      mouse_y - 50
+              set_target(
+                mouse['x'] - 50,
+                mouse['y'] - 50
+              );
+          },
+        },
+        'mousemove': {
+          'todo': function(){
+              set_target(
+                mouse['x'] - 50,
+                mouse['y'] - 50
+              );
+          },
+        },
+      }
     );
+    generate_layers();
 };
