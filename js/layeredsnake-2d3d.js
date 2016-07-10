@@ -33,8 +33,8 @@ function generate_layers(){
     }while(loop_counter--);
 
     set_target(
-      mouse['x'] - 50,
-      mouse['y'] - 50
+      input_mouse['x'] - 50,
+      input_mouse['y'] - 50
     );
 }
 
@@ -83,7 +83,7 @@ var layers = [];
 
 window.onload = function(){
     init_canvas();
-    init_input(
+    input_init(
       {
         'all': {
           'todo': generate_layers,
@@ -95,16 +95,16 @@ window.onload = function(){
               generate_layers();
 
               set_target(
-                mouse['x'] - 50,
-                mouse['y'] - 50
+                input_mouse['x'] - 50,
+                input_mouse['y'] - 50
               );
           },
         },
         'mousemove': {
           'todo': function(){
               set_target(
-                mouse['x'] - 50,
-                mouse['y'] - 50
+                input_mouse['x'] - 50,
+                input_mouse['y'] - 50
               );
           },
         },
