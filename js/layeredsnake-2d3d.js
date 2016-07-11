@@ -9,8 +9,8 @@ function draw_logic(){
         }
 
         // Draw layer.
-        buffer.fillStyle = layers[loop_counter]['color'];
-        buffer.fillRect(
+        canvas_buffer.fillStyle = layers[loop_counter]['color'];
+        canvas_buffer.fillRect(
           layers[loop_counter]['x'],
           layers[loop_counter]['y'],
           100,
@@ -27,8 +27,8 @@ function generate_layers(){
     do{
         layers.push({
           'color': random_hex(),
-          'x': Math.floor(Math.random() * width) - 50,
-          'y': Math.floor(Math.random() * height) - 50,
+          'x': Math.floor(Math.random() * canvas_width) - 50,
+          'y': Math.floor(Math.random() * canvas_height) - 50,
         });
     }while(loop_counter--);
 
@@ -82,7 +82,7 @@ function set_target(x, y){
 var layers = [];
 
 window.onload = function(){
-    init_canvas();
+    canvas_init();
     input_init(
       {
         'all': {
@@ -110,5 +110,6 @@ window.onload = function(){
         },
       }
     );
+
     generate_layers();
 };
