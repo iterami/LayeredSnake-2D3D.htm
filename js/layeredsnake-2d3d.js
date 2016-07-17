@@ -27,8 +27,8 @@ function generate_layers(){
     do{
         layers.push({
           'color': random_hex(),
-          'x': Math.floor(Math.random() * canvas_width) - 50,
-          'y': Math.floor(Math.random() * canvas_height) - 50,
+          'x': random_integer(canvas_width) - 50,
+          'y': random_integer(canvas_height) - 50,
         });
     }while(loop_counter--);
 
@@ -64,14 +64,6 @@ function logic(){
         layers[loop_counter]['x'] += dx;
         layers[loop_counter]['y'] += dy;
     }while(loop_counter--);
-}
-
-function random_hex(){
-    var choices = '0123456789abcdef';
-    return '#'
-      + choices.charAt(Math.floor(Math.random() * 16))
-      + choices.charAt(Math.floor(Math.random() * 16))
-      + choices.charAt(Math.floor(Math.random() * 16));
 }
 
 function set_target(x, y){
