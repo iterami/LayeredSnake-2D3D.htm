@@ -32,10 +32,7 @@ function generate_layers(){
         });
     }while(loop_counter--);
 
-    set_target(
-      input_mouse['x'] - 50,
-      input_mouse['y'] - 50
-    );
+    update_target();
 }
 
 function logic(){
@@ -66,9 +63,9 @@ function logic(){
     }while(loop_counter--);
 }
 
-function set_target(x, y){
-    layers[0]['x'] = x;
-    layers[0]['y'] = y;
+function update_target(){
+    layers[0]['x'] = input_mouse['x'] - 50;
+    layers[0]['y'] = input_mouse['y'] - 50;
 }
 
 var layers = [];
@@ -85,20 +82,11 @@ window.onload = function(){
         'mousedown': {
           'todo': function(){
               generate_layers();
-
-              set_target(
-                input_mouse['x'] - 50,
-                input_mouse['y'] - 50
-              );
+              update_target();
           },
         },
         'mousemove': {
-          'todo': function(){
-              set_target(
-                input_mouse['x'] - 50,
-                input_mouse['y'] - 50
-              );
-          },
+          'todo': update_target,
         },
       }
     );
