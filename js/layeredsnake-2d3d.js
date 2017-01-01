@@ -27,8 +27,12 @@ function generate_layers(){
     do{
         layers.push({
           'color': random_hex(),
-          'x': random_integer(canvas_width) - 50,
-          'y': random_integer(canvas_height) - 50,
+          'x': random_integer({
+            'max': canvas_width,
+          }) - 50,
+          'y': random_integer({
+            'max': canvas_height,
+          }) - 50,
         });
     }while(loop_counter--);
 
