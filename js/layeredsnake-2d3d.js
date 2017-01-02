@@ -76,13 +76,13 @@ var layers = [];
 
 window.onload = function(){
     canvas_init();
-    input_init(
-      {
+    input_init({
+      'keybinds': {
         'all': {
           'todo': generate_layers,
         },
       },
-      {
+      'mousebinds': {
         'mousedown': {
           'todo': function(){
               generate_layers();
@@ -92,8 +92,8 @@ window.onload = function(){
         'mousemove': {
           'todo': update_target,
         },
-      }
-    );
+      },
+    });
 
     generate_layers();
 };
