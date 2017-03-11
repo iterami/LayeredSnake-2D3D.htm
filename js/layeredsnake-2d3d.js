@@ -48,22 +48,17 @@ function logic(){
 
         // Calculate movement towards previous layer.
         var previous = loop_counter - 1;
-        var angle = Math.atan(
-          Math.abs(layers[loop_counter]['y'] - layers[previous]['y'])
-            / Math.abs(layers[loop_counter]['x'] - layers[previous]['x'])
-        );
-        var dx = Math.cos(angle) *
-          (layers[loop_counter]['x'] > layers[previous]['x']
-            ? -5
-            : 5);
-        var dy = Math.sin(angle) *
-          (layers[loop_counter]['y'] > layers[previous]['y']
-            ? -5
-            : 5);
+        var speed = math_move_2d({
+          'multiplier': 3,
+          'x0': layers[loop_counter]['x'],
+          'y0': layers[loop_counter]['y'],
+          'x1': layers[previous]['x'],
+          'y1': layers[previous]['y'],
+        });
 
         // Move towards previous layer.
-        layers[loop_counter]['x'] += dx;
-        layers[loop_counter]['y'] += dy;
+        layers[loop_counter]['x'] += speed['x'];
+        layers[loop_counter]['y'] += speed['y'];
     }while(loop_counter--);
 }
 
