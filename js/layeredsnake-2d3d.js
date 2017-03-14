@@ -26,7 +26,7 @@ function generate_layers(){
     var loop_counter = 99;
     do{
         layers.push({
-          'color': random_hex(),
+          'color': '#' + random_hex(),
           'x': random_integer({
             'max': canvas_width,
           }) - 50,
