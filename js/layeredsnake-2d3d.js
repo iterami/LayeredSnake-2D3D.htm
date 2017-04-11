@@ -13,8 +13,8 @@ function draw_logic(){
         canvas_buffer.fillRect(
           layers[loop_counter]['x'],
           layers[loop_counter]['y'],
-          100,
-          100
+          layer_size,
+          layer_size
         );
     }while(loop_counter--);
 }
@@ -29,10 +29,10 @@ function generate_layers(){
           'color': '#' + random_hex(),
           'x': random_integer({
             'max': canvas_width,
-          }) - 50,
+          }) - layer_size / 2,
           'y': random_integer({
             'max': canvas_height,
-          }) - 50,
+          }) - layer_size / 2,
         });
     }while(loop_counter--);
 
@@ -49,7 +49,7 @@ function logic(){
         // Calculate movement towards previous layer.
         var previous = loop_counter - 1;
         var speed = math_move_2d({
-          'multiplier': 3,
+          'multiplier': layer_speed,
           'x0': layers[loop_counter]['x'],
           'y0': layers[loop_counter]['y'],
           'x1': layers[previous]['x'],
@@ -63,10 +63,12 @@ function logic(){
 }
 
 function update_target(){
-    layers[0]['x'] = input_mouse['x'] - 50;
-    layers[0]['y'] = input_mouse['y'] - 50;
+    layers[0]['x'] = input_mouse['x'] - layer_size / 2;
+    layers[0]['y'] = input_mouse['y'] - layer_size / 2;
 }
 
+var layer_size = 100;
+var layer_speed = 3;
 var layers = [];
 
 window.onload = function(){
