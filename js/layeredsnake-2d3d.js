@@ -26,11 +26,11 @@ function generate_layers(){
     var loop_counter = 99;
     do{
         layers.push({
-          'color': '#' + random_hex(),
-          'x': random_integer({
+          'color': '#' + core_random_hex(),
+          'x': core_random_integer({
             'max': canvas_width,
           }) - layer_size / 2,
-          'y': random_integer({
+          'y': core_random_integer({
             'max': canvas_height,
           }) - layer_size / 2,
         });
