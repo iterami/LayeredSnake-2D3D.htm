@@ -63,8 +63,8 @@ function logic(){
 }
 
 function update_target(){
-    layers[0]['x'] = input_mouse['x'] - layer_size / 2;
-    layers[0]['y'] = input_mouse['y'] - layer_size / 2;
+    layers[0]['x'] = core_input_mouse['x'] - layer_size / 2;
+    layers[0]['y'] = core_input_mouse['y'] - layer_size / 2;
 }
 
 var layer_size = 100;
@@ -73,7 +73,7 @@ var layers = [];
 
 window.onload = function(){
     canvas_init();
-    input_init({
+    core_input_init({
       'keybinds': {
         'all': {
           'todo': generate_layers,
