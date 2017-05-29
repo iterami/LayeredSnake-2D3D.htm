@@ -62,18 +62,9 @@ function logic(){
     }while(loop_counter--);
 }
 
-function update_target(){
-    layers[0]['x'] = core_input_mouse['x'] - layer_size / 2;
-    layers[0]['y'] = core_input_mouse['y'] - layer_size / 2;
-}
-
-var layer_size = 100;
-var layer_speed = 3;
-var layers = [];
-
-window.onload = function(){
+function repo_init(){
     canvas_init();
-    core_input_init({
+    core_input_binds_add({
       'keybinds': {
         'all': {
           'todo': generate_layers,
@@ -93,4 +84,13 @@ window.onload = function(){
     });
 
     generate_layers();
-};
+}
+
+function update_target(){
+    layers[0]['x'] = core_input_mouse['x'] - layer_size / 2;
+    layers[0]['y'] = core_input_mouse['y'] - layer_size / 2;
+}
+
+var layer_size = 100;
+var layer_speed = 3;
+var layers = [];
