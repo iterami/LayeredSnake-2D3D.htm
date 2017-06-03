@@ -63,8 +63,7 @@ function logic(){
 }
 
 function repo_init(){
-    canvas_init();
-    core_input_binds_add({
+    core_events_bind({
       'keybinds': {
         'all': {
           'todo': generate_layers,
@@ -82,13 +81,14 @@ function repo_init(){
         },
       },
     });
+    canvas_init();
 
     generate_layers();
 }
 
 function update_target(){
-    layers[0]['x'] = core_input_mouse['x'] - layer_size / 2;
-    layers[0]['y'] = core_input_mouse['y'] - layer_size / 2;
+    layers[0]['x'] = core_mouse['x'] - layer_size / 2;
+    layers[0]['y'] = core_mouse['y'] - layer_size / 2;
 }
 
 var layer_size = 100;
