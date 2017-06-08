@@ -63,6 +63,9 @@ function logic(){
 }
 
 function repo_init(){
+    core_repo_init({
+      'title': 'LayeredSnake-2D3D.htm',
+    });
     core_events_bind({
       'keybinds': {
         'all': {
