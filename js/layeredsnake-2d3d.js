@@ -64,9 +64,6 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
-      'title': 'LayeredSnake-2D3D.htm',
-    });
-    core_events_bind({
       'keybinds': {
         'all': {
           'todo': generate_layers,
@@ -83,6 +80,7 @@ function repo_init(){
           'todo': update_target,
         },
       },
+      'title': 'LayeredSnake-2D3D.htm',
     });
     canvas_init();
 
