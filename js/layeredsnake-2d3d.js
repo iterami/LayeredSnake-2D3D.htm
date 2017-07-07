@@ -19,26 +19,6 @@ function draw_logic(){
     }while(loop_counter--);
 }
 
-function generate_layers(){
-    layers.length = 0;
-
-    // Generate 100 layers.
-    var loop_counter = 99;
-    do{
-        layers.push({
-          'color': '#' + core_random_hex(),
-          'x': core_random_integer({
-            'max': canvas_width,
-          }) - layer_size / 2,
-          'y': core_random_integer({
-            'max': canvas_height,
-          }) - layer_size / 2,
-        });
-    }while(loop_counter--);
-
-    update_target();
-}
-
 function logic(){
     var loop_counter = layers.length - 1;
     do{
@@ -64,27 +44,21 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
-      'keybinds': {
-        'all': {
-          'todo': generate_layers,
-        },
-      },
       'mousebinds': {
         'mousedown': {
-          'todo': function(){
-              generate_layers();
-              update_target();
-          },
+          'todo': canvas_setmode,
         },
         'mousemove': {
           'todo': update_target,
         },
       },
+      'storage': {
+        'snake-length': 99,
+      },
+      'storage-menu': '<table><tr><td><input id=snake-length><td>Length</table>',
       'title': 'LayeredSnake-2D3D.htm',
     });
     canvas_init();
-
-    generate_layers();
 }
 
 function update_target(){
