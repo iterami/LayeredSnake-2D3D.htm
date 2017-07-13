@@ -1,45 +1,41 @@
 'use strict';
 
 function draw_logic(){
-    // Draw layers.
-    var loop_counter = layers.length - 1;
-    do{
-        if(loop_counter <= 0){
-            break;
+    for(var entity in core_entities){
+        if(entity === top_layer){
+            continue;
         }
 
         // Draw layer.
-        canvas_buffer.fillStyle = layers[loop_counter]['color'];
+        canvas_buffer.fillStyle = core_entities[entity]['color'];
         canvas_buffer.fillRect(
-          layers[loop_counter]['x'],
-          layers[loop_counter]['y'],
-          layer_size,
-          layer_size
+          core_entities[entity]['x'],
+          core_entities[entity]['y'],
+          core_storage_data['layer-width'],
+          core_storage_data['layer-height']
         );
-    }while(loop_counter--);
+    }
 }
 
 function logic(){
-    var loop_counter = layers.length - 1;
-    do{
-        if(loop_counter <= 0){
-            break;
+    for(var entity in core_entities){
+        if(entity === top_layer){
+            continue;
         }
 
-        // Calculate movement towards previous layer.
-        var previous = loop_counter - 1;
+        // Calculate movement towards parent layer.
         var speed = math_move_2d({
-          'multiplier': layer_speed,
-          'x0': layers[loop_counter]['x'],
-          'y0': layers[loop_counter]['y'],
-          'x1': layers[previous]['x'],
-          'y1': layers[previous]['y'],
+          'multiplier': core_storage_data['layer-speed'],
+          'x0': core_entities[entity]['x'],
+          'y0': core_entities[entity]['y'],
+          'x1': core_entities[core_entities[entity]['parent']]['x'],
+          'y1': core_entities[core_entities[entity]['parent']]['y'],
         });
 
-        // Move towards previous layer.
-        layers[loop_counter]['x'] += speed['x'];
-        layers[loop_counter]['y'] += speed['y'];
-    }while(loop_counter--);
+        // Move towards parent layer.
+        core_entities[entity]['x'] += speed['x'];
+        core_entities[entity]['y'] += speed['y'];
+    }
 }
 
 function repo_init(){
@@ -53,19 +49,20 @@ function repo_init(){
         },
       },
       'storage': {
+        'layer-height': 100,
+        'layer-speed': 3,
+        'layer-width': 100,
         'snake-length': 99,
       },
-      'storage-menu': '<table><tr><td><input id=snake-length><td>Length</table>',
+      'storage-menu': '<table><tr><td><input id=layer-height><td>Layer Height<tr><td><input id=layer-width><td>Layer Width<tr><td><input id=layer-speed><td>Layer Speed<tr><td><input id=snake-length><td>Length</table>',
       'title': 'LayeredSnake-2D3D.htm',
     });
     canvas_init();
 }
 
 function update_target(){
-    layers[0]['x'] = core_mouse['x'] - layer_size / 2;
-    layers[0]['y'] = core_mouse['y'] - layer_size / 2;
+    core_entities[top_layer]['x'] = core_mouse['x'] - core_storage_data['layer-width'] / 2;
+    core_entities[top_layer]['y'] = core_mouse['y'] - core_storage_data['layer-height'] / 2;
 }
 
-var layer_size = 100;
-var layer_speed = 3;
-var layers = [];
+var top_layer = 0;
