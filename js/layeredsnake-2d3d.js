@@ -53,7 +53,10 @@ function repo_init(){
           'todo': canvas_setmode,
         },
         'mousemove': {
-          'todo': update_target,
+          'todo': function(){
+              core_entities[top_layer]['x'] = core_mouse['x'] - core_storage_data['layer-width'] / 2;
+              core_entities[top_layer]['y'] = core_mouse['y'] - core_storage_data['layer-height'] / 2;
+          },
         },
       },
       'storage': {
@@ -66,11 +69,6 @@ function repo_init(){
       'title': 'LayeredSnake-2D3D.htm',
     });
     canvas_init();
-}
-
-function update_target(){
-    core_entities[top_layer]['x'] = core_mouse['x'] - core_storage_data['layer-width'] / 2;
-    core_entities[top_layer]['y'] = core_mouse['y'] - core_storage_data['layer-height'] / 2;
 }
 
 var last_entity = '';

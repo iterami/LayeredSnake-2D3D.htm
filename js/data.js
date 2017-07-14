@@ -27,6 +27,4 @@ function load_data(){
     }
     last_entity = parent_id;
     top_layer = first_id;
-
-    update_target();
 }
