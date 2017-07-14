@@ -25,6 +25,7 @@ function load_data(){
 
         parent_id = this_id;
     }
+    last_entity = parent_id;
     top_layer = first_id;
 
     update_target();
