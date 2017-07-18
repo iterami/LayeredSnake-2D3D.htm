@@ -30,7 +30,7 @@ function logic_recursive(entity){
         return;
     }
 
-    // Calculate movement towards parent layer.
+    // Move towards parent layer.
     var speed = math_move_2d({
       'multiplier': core_storage_data['layer-speed'],
       'x0': core_entities[entity]['x'],
@@ -38,8 +38,6 @@ function logic_recursive(entity){
       'y0': core_entities[entity]['y'],
       'y1': core_entities[core_entities[entity]['parent']]['y'],
     });
-
-    // Move towards parent layer.
     core_entities[entity]['x'] += speed['x'];
     core_entities[entity]['y'] += speed['y'];
 
