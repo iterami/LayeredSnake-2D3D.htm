@@ -1,12 +1,12 @@
 'use strict';
 
 function load_data(){
-    var first_id = false;
+    top_layer = false;
     var parent_id = '';
     for(var i = 0; i < core_storage_data['snake-length']; i++){
         var this_id = core_uid();
-        if(!first_id){
-            first_id = this_id;
+        if(!top_layer){
+            top_layer = this_id;
         }
 
         core_entity_create({
@@ -26,5 +26,4 @@ function load_data(){
         parent_id = this_id;
     }
     last_entity = parent_id;
-    top_layer = first_id;
 }
