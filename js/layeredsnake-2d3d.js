@@ -10,7 +10,11 @@ function draw_recursive(entity){
     }
 
     // Draw layer.
-    canvas_buffer.fillStyle = core_entities[entity]['color'];
+    canvas_setproperties({
+      'properties': {
+        'fillStyle': core_entities[entity]['color'],
+      },
+    });
     canvas_buffer.fillRect(
       core_entities[entity]['x'],
       core_entities[entity]['y'],
