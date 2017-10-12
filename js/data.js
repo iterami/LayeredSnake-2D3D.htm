@@ -15,10 +15,10 @@ function load_data(){
             'color': '#' + core_random_hex(),
             'parent': parent_id,
             'x': core_random_integer({
-              'max': canvas_width,
+              'max': canvas_properties['width'],
             }) - core_storage_data['layer-width'] / 2,
             'y': core_random_integer({
-              'max': canvas_height,
+              'max': canvas_properties['height'],
             }) - core_storage_data['layer-height'] / 2,
           },
         });
