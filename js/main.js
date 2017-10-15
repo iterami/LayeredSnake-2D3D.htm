@@ -4,48 +4,8 @@ function draw_logic(){
     draw_recursive(last_entity);
 }
 
-function draw_recursive(entity){
-    if(entity === top_layer){
-        return;
-    }
-
-    // Draw layer.
-    canvas_setproperties({
-      'properties': {
-        'fillStyle': core_entities[entity]['color'],
-      },
-    });
-    canvas_buffer.fillRect(
-      core_entities[entity]['x'],
-      core_entities[entity]['y'],
-      core_storage_data['layer-width'],
-      core_storage_data['layer-height']
-    );
-
-    draw_recursive(core_entities[entity]['parent']);
-}
-
 function logic(){
     logic_recursive(last_entity);
-}
-
-function logic_recursive(entity){
-    if(entity === top_layer){
-        return;
-    }
-
-    // Move towards parent layer.
-    var speed = math_move_2d({
-      'multiplier': core_storage_data['layer-speed'],
-      'x0': core_entities[entity]['x'],
-      'x1': core_entities[core_entities[entity]['parent']]['x'],
-      'y0': core_entities[entity]['y'],
-      'y1': core_entities[core_entities[entity]['parent']]['y'],
-    });
-    core_entities[entity]['x'] += speed['x'];
-    core_entities[entity]['y'] += speed['y'];
-
-    logic_recursive(core_entities[entity]['parent']);
 }
 
 function repo_init(){
@@ -72,6 +32,3 @@ function repo_init(){
     });
     canvas_init();
 }
-
-var last_entity = '';
-var top_layer = 0;
