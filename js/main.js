@@ -10,6 +10,10 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
+      'globals': {
+        'last_entity': '',
+        'top_layer': 0,
+      },
       'mousebinds': {
         'mousedown': {
           'todo': canvas_setmode,

@@ -67,6 +67,3 @@ function load_data(){
     }
     last_entity = parent_id;
 }
-
-var last_entity = '';
-var top_layer = 0;
