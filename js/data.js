@@ -27,7 +27,7 @@ function logic_recursive(entity){
     }
 
     // Move towards parent layer.
-    var speed = core_move_2d({
+    let speed = core_move_2d({
       'multiplier': core_storage_data['layer-speed'],
       'x0': core_entities[entity]['x'],
       'x1': core_entities[core_entities[entity]['parent']]['x'],
@@ -42,9 +42,9 @@ function logic_recursive(entity){
 
 function load_data(){
     top_layer = false;
-    var parent_id = '';
-    for(var i = 0; i < core_storage_data['snake-length']; i++){
-        var this_id = core_uid();
+    let parent_id = '';
+    for(let i = 0; i < core_storage_data['snake-length']; i++){
+        let this_id = core_uid();
         if(!top_layer){
             top_layer = this_id;
         }
