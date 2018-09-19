@@ -44,13 +44,12 @@ function load_data(){
     top_layer = false;
     let parent_id = '';
     for(let i = 0; i < core_storage_data['snake-length']; i++){
-        let this_id = core_uid();
         if(!top_layer){
-            top_layer = this_id;
+            top_layer = i;
         }
 
         core_entity_create({
-          'id': this_id,
+          'id': i,
           'properties': {
             'color': '#' + core_random_hex(),
             'parent': parent_id,
@@ -63,7 +62,7 @@ function load_data(){
           },
         });
 
-        parent_id = this_id;
+        parent_id = i;
     }
     last_entity = parent_id;
 }
