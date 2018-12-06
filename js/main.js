@@ -31,7 +31,10 @@ function repo_init(){
         'layer-width': 100,
         'snake-length': 99,
       },
-      'storage-menu': '<table><tr><td><input id=layer-height><td>Layer Height<tr><td><input id=layer-width><td>Layer Width<tr><td><input id=layer-speed><td>Layer Speed<tr><td><input id=snake-length><td>Length</table>',
+      'storage-menu': '<table><tr><td><input id=layer-height><td>Layer Height'
+        + '<tr><td><input id=layer-width><td>Layer Width'
+        + '<tr><td><input id=layer-speed><td>Layer Speed'
+        + '<tr><td><input id=snake-length><td>Length</table>',
       'title': 'LayeredSnake-2D3D.htm',
     });
     canvas_init();
