@@ -27,11 +27,13 @@ function repo_init(){
       },
       'storage': {
         'layer-height': 100,
+        'layer-random': 0,
         'layer-speed': 3,
         'layer-width': 100,
         'snake-length': 99,
       },
       'storage-menu': '<table><tr><td><input id=layer-height><td>Layer Height'
+        + '<tr><td><input id=layer-random><td>Layer Movement Randomness'
         + '<tr><td><input id=layer-width><td>Layer Width'
         + '<tr><td><input id=layer-speed><td>Layer Speed'
         + '<tr><td><input id=snake-length><td>Length</table>',
