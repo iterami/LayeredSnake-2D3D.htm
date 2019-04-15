@@ -14,10 +14,16 @@ function repo_init(){
         'last_entity': '',
         'top_layer': 0,
       },
-      'mousebinds': {
-        'mousedown': {
-          'todo': canvas_setmode,
+      'events': {
+        'explode': {
+          'onclick': function(){
+              canvas_setmode();
+              core_escape();
+          },
         },
+      },
+      'info': '<input id=explode type=button value=Explode>',
+      'mousebinds': {
         'mousemove': {
           'todo': function(){
               core_entities[top_layer]['x'] = core_mouse['x'] - core_storage_data['layer-width'] / 2;
