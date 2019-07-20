@@ -27,7 +27,7 @@ function logic_recursive(entity){
     }
 
     // Move towards parent layer.
-    let speed = core_move_2d({
+    let speed = math_move_2d({
       'multiplier': core_storage_data['layer-speed'],
       'x0': core_entities[entity]['x'],
       'x1': core_entities[core_entities[entity]['parent']]['x'],
