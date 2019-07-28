@@ -8,17 +8,17 @@ function draw_recursive(entity){
     // Draw layer.
     canvas_setproperties({
       'properties': {
-        'fillStyle': core_entities[entity]['color'],
+        'fillStyle': entity_entities[entity]['color'],
       },
     });
     canvas_buffer.fillRect(
-      core_entities[entity]['x'],
-      core_entities[entity]['y'],
+      entity_entities[entity]['x'],
+      entity_entities[entity]['y'],
       core_storage_data['layer-width'],
       core_storage_data['layer-height']
     );
 
-    draw_recursive(core_entities[entity]['parent']);
+    draw_recursive(entity_entities[entity]['parent']);
 }
 
 function logic_recursive(entity){
@@ -29,10 +29,10 @@ function logic_recursive(entity){
     // Move towards parent layer.
     let speed = math_move_2d({
       'multiplier': core_storage_data['layer-speed'],
-      'x0': core_entities[entity]['x'],
-      'x1': core_entities[core_entities[entity]['parent']]['x'],
-      'y0': core_entities[entity]['y'],
-      'y1': core_entities[core_entities[entity]['parent']]['y'],
+      'x0': entity_entities[entity]['x'],
+      'x1': entity_entities[entity_entities[entity]['parent']]['x'],
+      'y0': entity_entities[entity]['y'],
+      'y1': entity_entities[entity_entities[entity]['parent']]['y'],
     });
 
     if(core_storage_data['layer-random'] !== 0){
@@ -44,10 +44,10 @@ function logic_recursive(entity){
         }) - core_storage_data['layer-random'] / 2;
     }
 
-    core_entities[entity]['x'] += speed['x'];
-    core_entities[entity]['y'] += speed['y'];
+    entity_entities[entity]['x'] += speed['x'];
+    entity_entities[entity]['y'] += speed['y'];
 
-    logic_recursive(core_entities[entity]['parent']);
+    logic_recursive(entity_entities[entity]['parent']);
 }
 
 function load_data(){
@@ -58,7 +58,7 @@ function load_data(){
             top_layer = i;
         }
 
-        core_entity_create({
+        entity_create({
           'id': i,
           'properties': {
             'color': '#' + core_random_hex(),
