@@ -22,13 +22,15 @@ function repo_init(){
       },
       'events': {
         'explode': {
-          'onclick': function(){
-              canvas_setmode();
-              core_escape();
-          },
+          'onclick': explode,
         },
       },
-      'info': '<input id=explode type=button value=Explode>',
+      'info': '<input id=explode type=button value="Explode [H]">',
+      'keybinds': {
+        72: {
+          'todo': explode,
+        },
+      },
       'mousebinds': {
         'mousedown': {},
         'mousemove': {},

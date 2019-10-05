@@ -21,6 +21,14 @@ function draw_recursive(entity){
     draw_recursive(entity_entities[entity]['parent']);
 }
 
+function explode(){
+    canvas_setmode();
+
+    if(core_menu_open){
+        core_escape();
+    }
+}
+
 function logic_recursive(entity){
     if(entity === top_layer){
         return;
