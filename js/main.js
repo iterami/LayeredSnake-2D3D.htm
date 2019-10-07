@@ -22,18 +22,20 @@ function repo_init(){
       },
       'events': {
         'explode': {
-          'onclick': explode,
+          'onclick': core_reset_todo,
         },
       },
-      'info': '<input id=explode type=button value="Explode [H]">',
-      'keybinds': {
-        72: {
-          'todo': explode,
-        },
-      },
+      'info': '<input id=explode type=button value=Explode>',
       'mousebinds': {
         'mousedown': {},
         'mousemove': {},
+      },
+      'reset': function(){
+          canvas_setmode();
+
+          if(core_menu_open){
+              core_escape();
+          }
       },
       'storage': {
         'layer-height': 100,
