@@ -22,7 +22,7 @@ function repo_init(){
       },
       'events': {
         'explode': {
-          'onclick': core_reset_todo,
+          'onclick': core_repo_reset,
         },
       },
       'info': '<input id=explode type=button value=Explode>',
