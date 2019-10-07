@@ -30,13 +30,7 @@ function repo_init(){
         'mousedown': {},
         'mousemove': {},
       },
-      'reset': function(){
-          canvas_setmode();
-
-          if(core_menu_open){
-              core_escape();
-          }
-      },
+      'reset': canvas_setmode,
       'storage': {
         'layer-height': 100,
         'layer-random': 0,
