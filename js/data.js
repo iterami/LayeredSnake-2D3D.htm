@@ -5,7 +5,6 @@ function draw_recursive(entity){
         return;
     }
 
-    // Draw layer.
     canvas_setproperties({
       'properties': {
         'fillStyle': entity_entities[entity]['color'],
@@ -26,7 +25,6 @@ function logic_recursive(entity){
         return;
     }
 
-    // Move towards parent layer.
     const speed = math_move_2d({
       'speed': core_storage_data['layer-speed'],
       'x0': entity_entities[entity]['x'],
