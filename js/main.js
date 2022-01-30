@@ -39,11 +39,11 @@ function repo_init(){
         'mouse-lock': true,
         'snake-length': 99,
       },
-      'storage-menu': '<table><tr><td><input id=layer-height min=1 type=number><td>Layer Height'
-        + '<tr><td><input id=layer-random type=number><td>Layer Movement Randomness'
-        + '<tr><td><input id=layer-width min=1 type=number><td>Layer Width'
-        + '<tr><td><input id=layer-speed min=0 type=number><td>Layer Speed'
-        + '<tr><td><input id=snake-length min=1 type=number><td>Length'
+      'storage-menu': '<table><tr><td><input id=layer-height min=1 step=any type=number><td>Layer Height'
+        + '<tr><td><input id=layer-random step=any type=number><td>Layer Movement Randomness'
+        + '<tr><td><input id=layer-width min=1 step=any type=number><td>Layer Width'
+        + '<tr><td><input id=layer-speed min=0 step=any type=number><td>Layer Speed'
+        + '<tr><td><input id=snake-length min=1 step=any type=number><td>Length'
         + '<tr><td><input id=mouse-lock type=checkbox><td>Mouse Lock</table>',
       'title': 'LayeredSnake-2D3D.htm',
     });
