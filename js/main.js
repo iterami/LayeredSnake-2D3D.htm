@@ -47,5 +47,7 @@ function repo_init(){
         + '<tr><td><input id=mouse-lock type=checkbox><td>Mouse Lock</table>',
       'title': 'LayeredSnake-2D3D.htm',
     });
-    canvas_init();
+    canvas_init({
+      'cursor': 'pointer',
+    });
 }
