@@ -10,7 +10,7 @@ function draw_recursive(entity){
         'fillStyle': entity_entities[entity]['color'],
       },
     });
-    canvas_buffer.fillRect(
+    canvas.fillRect(
       entity_entities[entity]['x'],
       entity_entities[entity]['y'],
       core_storage_data['layer-width'],
