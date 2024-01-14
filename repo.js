@@ -34,12 +34,8 @@ function logic_recursive(entity){
     });
 
     if(core_storage_data['layer-random'] !== 0){
-        speed['x'] += core_random_number({
-          'multiplier': core_storage_data['layer-random'],
-        }) - core_storage_data['layer-random'] / 2;
-        speed['y'] += core_random_number({
-          'multiplier': core_storage_data['layer-random'],
-        }) - core_storage_data['layer-random'] / 2;
+        speed['x'] += Math.random() * core_storage_data['layer-random'] - core_storage_data['layer-random'] / 2;
+        speed['y'] += Math.random() * core_storage_data['layer-random'] - core_storage_data['layer-random'] / 2;
     }
 
     entity_entities[entity]['x'] += speed['x'];
