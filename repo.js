@@ -96,7 +96,7 @@ function repo_init(){
           'onclick': core_repo_reset,
         },
       },
-      'info': '<input id=explode type=button value=Explode>',
+      'info': '<button id=explode type=button>Explode</button>',
       'mousebinds': {
         'mousedown': {},
         'mousemove': {},
