@@ -6,9 +6,7 @@ function draw_recursive(entity){
     }
 
     canvas_setproperties({
-      'properties': {
-        'fillStyle': entity_entities[entity]['color'],
-      },
+      'fillStyle': entity_entities[entity]['color'],
     });
     canvas.fillRect(
       entity_entities[entity]['x'],
