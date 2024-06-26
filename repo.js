@@ -45,7 +45,7 @@ function logic_recursive(entity){
 function load_data(){
     top_layer = false;
     let parent_id = '';
-    for(let i = 0; i < core_storage_data['snake-length']; i++){
+    for(let i = 0; i < core_storage_data['snake-length'] + 2; i++){
         if(!top_layer){
             top_layer = i;
         }
@@ -112,7 +112,7 @@ function repo_init(){
         + '<tr><td><input class=mini id=layer-random step=any type=number><td>Layer Movement Randomness'
         + '<tr><td><input class=mini id=layer-speed min=0 step=any type=number><td>Layer Speed'
         + '<tr><td><input class=mini id=layer-width min=1 step=any type=number><td>Layer Width'
-        + '<tr><td><input class=mini id=snake-length min=1 step=any type=number><td>Length'
+        + '<tr><td><input class=mini id=snake-length min=1 step=1 type=number><td>Length'
         + '<tr><td><input id=mouse-lock type=checkbox><td>Mouse Lock</table>',
       'title': 'LayeredSnake-2D3D.htm',
     });
