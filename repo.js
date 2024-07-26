@@ -1,7 +1,8 @@
 'use strict';
 
 function draw_recursive(entity){
-    if(entity === top_layer){
+    if(entity === top_layer
+      || entity === ''){
         return;
     }
 
