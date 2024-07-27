@@ -9,12 +9,31 @@ function draw_recursive(entity){
     canvas_setproperties({
       'fillStyle': entity_entities[entity]['color'],
     });
-    canvas.fillRect(
-      entity_entities[entity]['x'],
-      entity_entities[entity]['y'],
-      core_storage_data['layer-width'],
-      core_storage_data['layer-height']
-    );
+    if(core_storage_data['type'] === 1){
+        canvas.fillRect(
+          entity_entities[entity]['x'] - core_storage_data['layer-width'],
+          entity_entities[entity]['y'] - core_storage_data['layer-height'],
+          core_storage_data['layer-width'] * 2,
+          core_storage_data['layer-height'] * 2
+        );
+
+    }else{
+        canvas_draw_path({
+          'style': 'fill',
+          'vertices': [
+            [
+              'ellipse',
+              entity_entities[entity]['x'],
+              entity_entities[entity]['y'],
+              core_storage_data['layer-width'],
+              core_storage_data['layer-height'],
+              0,
+              0,
+              Math.PI * 2,
+            ],
+          ],
+        });
+    }
 
     draw_recursive(entity_entities[entity]['parent']);
 }
@@ -102,19 +121,21 @@ function repo_init(){
       },
       'reset': canvas_setmode,
       'storage': {
-        'layer-height': 100,
+        'layer-height': 50,
         'layer-random': 0,
         'layer-speed': 3,
-        'layer-width': 100,
+        'layer-width': 50,
         'mouse-lock': true,
         'snake-length': 99,
+        'type': 0,
       },
       'storage-menu': '<table><tr><td><input class=mini id=layer-height min=1 step=any type=number><td>Layer Height'
         + '<tr><td><input class=mini id=layer-random step=any type=number><td>Layer Movement Randomness'
         + '<tr><td><input class=mini id=layer-speed min=0 step=any type=number><td>Layer Speed'
         + '<tr><td><input class=mini id=layer-width min=1 step=any type=number><td>Layer Width'
         + '<tr><td><input class=mini id=snake-length min=1 step=1 type=number><td>Length'
-        + '<tr><td><input id=mouse-lock type=checkbox><td>Mouse Lock</table>',
+        + '<tr><td><input id=mouse-lock type=checkbox><td>Mouse Lock'
+        + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type</table>',
       'title': 'LayeredSnake-2D3D.htm',
     });
     canvas_init({
