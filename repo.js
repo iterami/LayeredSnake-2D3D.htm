@@ -96,8 +96,8 @@ function repo_drawlogic(){
 function repo_logic(){
     if(core_storage_data['mouse-lock']
       || core_mouse['down-0']){
-        entity_entities[top_layer]['x'] = core_mouse['x'] - core_storage_data['layer-width'] / 2;
-        entity_entities[top_layer]['y'] = core_mouse['y'] - core_storage_data['layer-height'] / 2;
+        entity_entities[top_layer]['x'] = core_mouse['x'];
+        entity_entities[top_layer]['y'] = core_mouse['y'];
     }
 
     logic_recursive(last_entity);
