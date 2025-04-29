@@ -111,7 +111,7 @@ function repo_init(){
       },
       'events': {
         'explode': {
-          'onclick': core_repo_reset,
+          'onclick': canvas_setmode,
         },
       },
       'info': '<button id=explode type=button>Explode</button>',
@@ -119,7 +119,6 @@ function repo_init(){
         'mousedown': {},
         'mousemove': {},
       },
-      'reset': canvas_setmode,
       'storage': {
         'layer-height': 50,
         'layer-random': 0,
