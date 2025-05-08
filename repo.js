@@ -94,10 +94,10 @@ function repo_drawlogic(){
 }
 
 function repo_logic(){
-    if(core_storage_data['mouse-lock']
-      || core_mouse['down-0']){
-        entity_entities[top_layer]['x'] = core_mouse['x'];
-        entity_entities[top_layer]['y'] = core_mouse['y'];
+    if(core_storage_data['pointer-lock']
+      || core_pointer['down-0']){
+        entity_entities[top_layer]['x'] = core_pointer['x'];
+        entity_entities[top_layer]['y'] = core_pointer['y'];
     }
 
     logic_recursive(last_entity);
@@ -115,16 +115,13 @@ function repo_init(){
         },
       },
       'info': '<button id=explode type=button>Explode</button>',
-      'mousebinds': {
-        'mousedown': {},
-        'mousemove': {},
-      },
+      'pointerbinds': {},
       'storage': {
         'layer-height': 50,
         'layer-random': 0,
         'layer-speed': 3,
         'layer-width': 50,
-        'mouse-lock': true,
+        'pointer-lock': true,
         'snake-length': 99,
         'type': 0,
       },
@@ -133,7 +130,7 @@ function repo_init(){
         + '<tr><td><input class=mini id=layer-speed min=0 step=any type=number><td>Layer Speed'
         + '<tr><td><input class=mini id=layer-width min=1 step=any type=number><td>Layer Width'
         + '<tr><td><input class=mini id=snake-length min=1 step=1 type=number><td>Length'
-        + '<tr><td><input id=mouse-lock type=checkbox><td>Mouse Lock'
+        + '<tr><td><input id=pointer-lock type=checkbox><td>Pointer Lock'
         + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type</table>',
       'title': 'LayeredSnake-2D3D.htm',
     });
