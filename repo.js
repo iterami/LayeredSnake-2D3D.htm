@@ -93,16 +93,6 @@ function repo_drawlogic(){
     draw_recursive(last_entity);
 }
 
-function repo_logic(){
-    if(core_storage_data['pointer-lock']
-      || core_pointer['down-0']){
-        entity_entities[top_layer]['x'] = core_pointer['x'];
-        entity_entities[top_layer]['y'] = core_pointer['y'];
-    }
-
-    logic_recursive(last_entity);
-}
-
 function repo_init(){
     core_repo_init({
       'globals': {
@@ -137,4 +127,14 @@ function repo_init(){
     canvas_init({
       'cursor': 'pointer',
     });
+}
+
+function repo_logic(){
+    if(core_storage_data['pointer-lock']
+      || core_pointer['down-0']){
+        entity_entities[top_layer]['x'] = core_pointer['x'];
+        entity_entities[top_layer]['y'] = core_pointer['y'];
+    }
+
+    logic_recursive(last_entity);
 }
