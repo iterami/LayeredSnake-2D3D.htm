@@ -7,14 +7,14 @@ function draw_recursive(entity){
     }
 
     canvas_setproperties({
-      'fillStyle': entity_entities[entity]['color'],
+      'fillStyle': entity_entities[entity].color,
     });
-    if(core_storage_data['type'] === 1){
+    if(core_storage_data.type === 1){
         canvas.fillRect(
-          entity_entities[entity]['x'] - core_storage_data['layer-width'],
-          entity_entities[entity]['y'] - core_storage_data['layer-height'],
-          core_storage_data['layer-width'] * 2,
-          core_storage_data['layer-height'] * 2
+          entity_entities[entity].x - core_storage_data.layer_width,
+          entity_entities[entity].y - core_storage_data.layer_height,
+          core_storage_data.layer_width * 2,
+          core_storage_data.layer_height * 2
         );
 
     }else{
@@ -23,10 +23,10 @@ function draw_recursive(entity){
           'vertices': [
             [
               'ellipse',
-              entity_entities[entity]['x'],
-              entity_entities[entity]['y'],
-              core_storage_data['layer-width'],
-              core_storage_data['layer-height'],
+              entity_entities[entity].x,
+              entity_entities[entity].y,
+              core_storage_data.layer_width,
+              core_storage_data.layer_height,
               0,
               0,
               Math.PI * 2,
@@ -35,7 +35,7 @@ function draw_recursive(entity){
         });
     }
 
-    draw_recursive(entity_entities[entity]['parent']);
+    draw_recursive(entity_entities[entity].parent);
 }
 
 function logic_recursive(entity){
@@ -44,28 +44,28 @@ function logic_recursive(entity){
     }
 
     const speed = math_move_2d({
-      'speed': core_storage_data['layer-speed'],
-      'x0': entity_entities[entity]['x'],
-      'x1': entity_entities[entity_entities[entity]['parent']]['x'],
-      'y0': entity_entities[entity]['y'],
-      'y1': entity_entities[entity_entities[entity]['parent']]['y'],
+      'speed': core_storage_data.layer_speed,
+      'x0': entity_entities[entity].x,
+      'x1': entity_entities[entity_entities[entity].parent].x,
+      'y0': entity_entities[entity].y,
+      'y1': entity_entities[entity_entities[entity].parent].y,
     });
 
-    if(core_storage_data['layer-random'] !== 0){
-        speed['x'] += Math.random() * core_storage_data['layer-random'] - core_storage_data['layer-random'] / 2;
-        speed['y'] += Math.random() * core_storage_data['layer-random'] - core_storage_data['layer-random'] / 2;
+    if(core_storage_data.layer_random !== 0){
+        speed.x += Math.random() * core_storage_data.layer_random - core_storage_data.layer_random / 2;
+        speed.y += Math.random() * core_storage_data.layer_random - core_storage_data.layer_random / 2;
     }
 
-    entity_entities[entity]['x'] += speed['x'];
-    entity_entities[entity]['y'] += speed['y'];
+    entity_entities[entity].x += speed.x;
+    entity_entities[entity].y += speed.y;
 
-    logic_recursive(entity_entities[entity]['parent']);
+    logic_recursive(entity_entities[entity].parent);
 }
 
 function load_data(){
     top_layer = false;
     let parent_id = '';
-    for(let i = 0; i < core_storage_data['snake-length'] + 2; i++){
+    for(let i = 0; i < core_storage_data.snake_length + 2; i++){
         if(!top_layer){
             top_layer = i;
         }
@@ -75,8 +75,8 @@ function load_data(){
           'properties': {
             'color': '#' + core_random_hex(),
             'parent': parent_id,
-            'x': core_random_integer(canvas_properties['width']) - core_storage_data['layer-width'] / 2,
-            'y': core_random_integer(canvas_properties['height']) - core_storage_data['layer-height'] / 2,
+            'x': core_random_integer(canvas_properties.width) - core_storage_data.layer_width / 2,
+            'y': core_random_integer(canvas_properties.height) - core_storage_data.layer_height / 2,
           },
         });
 
@@ -103,20 +103,20 @@ function repo_init(){
       'info': '<button id=explode type=button>Explode</button>',
       'pointerbinds': {},
       'storage': {
-        'layer-height': 50,
-        'layer-random': 0,
-        'layer-speed': 3,
-        'layer-width': 50,
-        'pointer-lock': true,
-        'snake-length': 99,
+        'layer_height': 50,
+        'layer_random': 0,
+        'layer_speed': 3,
+        'layer_width': 50,
+        'pointer_lock': true,
+        'snake_length': 99,
         'type': 0,
       },
-      'storage-menu': '<table><tr><td><input class=mini id=layer-height min=1 step=any type=number><td>Layer Height'
-        + '<tr><td><input class=mini id=layer-random step=any type=number><td>Layer Movement Randomness'
-        + '<tr><td><input class=mini id=layer-speed min=0 step=any type=number><td>Layer Speed'
-        + '<tr><td><input class=mini id=layer-width min=1 step=any type=number><td>Layer Width'
-        + '<tr><td><input class=mini id=snake-length min=1 step=1 type=number><td>Length'
-        + '<tr><td><input id=pointer-lock type=checkbox><td>Pointer Lock'
+      'storage-menu': '<table><tr><td><input class=mini id=layer_height min=1 step=any type=number><td>Layer Height'
+        + '<tr><td><input class=mini id=layer_random step=any type=number><td>Layer Movement Randomness'
+        + '<tr><td><input class=mini id=layer_speed min=0 step=any type=number><td>Layer Speed'
+        + '<tr><td><input class=mini id=layer_width min=1 step=any type=number><td>Layer Width'
+        + '<tr><td><input class=mini id=snake_length min=1 step=1 type=number><td>Length'
+        + '<tr><td><input id=pointer_lock type=checkbox><td>Pointer Lock'
         + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type</table>',
       'title': 'LayeredSnake-2D3D.htm',
     });
@@ -126,10 +126,10 @@ function repo_init(){
 }
 
 function repo_logic(){
-    if(core_storage_data['pointer-lock']
-      || core_pointer['down-0']){
-        entity_entities[top_layer]['x'] = core_pointer['x'];
-        entity_entities[top_layer]['y'] = core_pointer['y'];
+    if(core_storage_data.pointer_lock
+      || core_pointer.down-0){
+        entity_entities[top_layer].x = core_pointer.x;
+        entity_entities[top_layer].y = core_pointer.y;
     }
 
     logic_recursive(last_entity);
