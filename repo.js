@@ -127,7 +127,7 @@ function repo_init(){
 
 function repo_logic(){
     if(core_storage_data.pointer_lock
-      || core_pointer['down-0']){
+      || core_pointer.down_0){
         entity_entities[top_layer].x = core_pointer.x;
         entity_entities[top_layer].y = core_pointer.y;
     }
