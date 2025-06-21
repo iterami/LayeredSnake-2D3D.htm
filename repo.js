@@ -111,7 +111,7 @@ function repo_init(){
         'snake_length': 99,
         'type': 0,
       },
-      'storage-menu': '<table><tr><td><input class=mini id=layer_height min=1 step=any type=number><td>Layer Height'
+      'storage_menu': '<table><tr><td><input class=mini id=layer_height min=1 step=any type=number><td>Layer Height'
         + '<tr><td><input class=mini id=layer_random step=any type=number><td>Layer Movement Randomness'
         + '<tr><td><input class=mini id=layer_speed min=0 step=any type=number><td>Layer Speed'
         + '<tr><td><input class=mini id=layer_width min=1 step=any type=number><td>Layer Width'
