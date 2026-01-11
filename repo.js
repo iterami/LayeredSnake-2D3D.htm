@@ -62,29 +62,6 @@ function logic_recursive(entity){
     logic_recursive(entity_entities[entity].parent);
 }
 
-function load_data(){
-    top_layer = false;
-    let parent_id = '';
-    for(let i = 0; i < core_storage_data.snake_length + 2; i++){
-        if(!top_layer){
-            top_layer = i;
-        }
-
-        entity_create({
-          'id': i,
-          'properties': {
-            'color': '#' + core_random_hex(),
-            'parent': parent_id,
-            'x': core_random_integer(canvas_properties.width) - core_storage_data.layer_width / 2,
-            'y': core_random_integer(canvas_properties.height) - core_storage_data.layer_height / 2,
-          },
-        });
-
-        parent_id = i;
-    }
-    last_entity = parent_id;
-}
-
 function repo_drawlogic(){
     draw_recursive(last_entity);
 }
@@ -123,6 +100,29 @@ function repo_init(){
     canvas_init({
       'cursor': 'pointer',
     });
+}
+
+function repo_load(){
+    top_layer = false;
+    let parent_id = '';
+    for(let i = 0; i < core_storage_data.snake_length + 2; i++){
+        if(!top_layer){
+            top_layer = i;
+        }
+
+        entity_create({
+          'id': i,
+          'properties': {
+            'color': '#' + core_random_hex(),
+            'parent': parent_id,
+            'x': core_random_integer(canvas_properties.width) - core_storage_data.layer_width / 2,
+            'y': core_random_integer(canvas_properties.height) - core_storage_data.layer_height / 2,
+          },
+        });
+
+        parent_id = i;
+    }
+    last_entity = parent_id;
 }
 
 function repo_logic(){
