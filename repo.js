@@ -73,11 +73,10 @@ function repo_init(){
         'top_layer': 0,
       },
       'events': {
-        'explode': {
+        'boom': {
           'onclick': canvas_setmode,
         },
       },
-      'info': '<button id=explode type=button>Explode</button>',
       'pointerbinds': {},
       'storage': {
         'layer_height': 50,
@@ -96,6 +95,7 @@ function repo_init(){
         + '<tr><td><input id=pointer_lock type=checkbox><td>Pointer Lock'
         + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type</table>',
       'title': 'LayeredSnake-2D3D.htm',
+      'ui': '<button id=boom type=button>BOOM</button>',
     });
     canvas_init({
       'cursor': 'pointer',
