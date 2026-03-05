@@ -92,7 +92,7 @@ function repo_init(){
         + '<tr><td><input class=mini id=layer_speed min=0 step=any type=number><td>Layer Speed'
         + '<tr><td><input class=mini id=layer_width min=1 step=any type=number><td>Layer Width'
         + '<tr><td><input class=mini id=snake_length min=1 step=1 type=number><td>Length'
-        + '<tr><td><input id=pointer_lock type=checkbox><td>Pointer Lock'
+        + '<tr><td class=right><input id=pointer_lock type=checkbox><td><label for=pointer_lock>Pointer Lock</label>'
         + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type</table>',
       'title': 'LayeredSnake-2D3D.htm',
       'ui': '<button id=boom type=button>BOOM</button>',
