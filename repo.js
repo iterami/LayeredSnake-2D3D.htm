@@ -87,13 +87,13 @@ function repo_init(){
         'snake_length': 99,
         'type': 0,
       },
-      'storage_menu': '<table><tr><td><input class=mini id=layer_height min=1 step=any type=number><td>Layer Height'
-        + '<tr><td><input class=mini id=layer_random step=any type=number><td>Layer Movement Randomness'
-        + '<tr><td><input class=mini id=layer_speed min=0 step=any type=number><td>Layer Speed'
+      'storage_menu': '<table><tr><td><input class=mini id=snake_length min=1 step=1 type=number><td>Snake Layers'
+        + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Snake Type'
+        + '<tr><td><input class=mini id=layer_height min=1 step=any type=number><td>Layer Height'
         + '<tr><td><input class=mini id=layer_width min=1 step=any type=number><td>Layer Width'
-        + '<tr><td><input class=mini id=snake_length min=1 step=1 type=number><td>Length'
-        + '<tr><td class=right><input id=pointer_lock type=checkbox><td><label for=pointer_lock>Pointer Lock</label>'
-        + '<tr><td><select id=type><option value=0>Ellipse<option value=1>Rectangle</select><td>Type</table>',
+        + '<tr><td><input class=mini id=layer_speed min=0 step=any type=number><td>Layer Speed'
+        + '<tr><td><input class=mini id=layer_random step=any type=number><td>Layer Movement Randomness'
+        + '<tr><td class=right><input id=pointer_lock type=checkbox><td><label for=pointer_lock>Pointer Lock</label></table>',
       'title': 'LayeredSnake-2D3D.htm',
       'ui': '<button id=boom type=button>BOOM</button>',
     });
