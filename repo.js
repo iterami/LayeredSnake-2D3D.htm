@@ -29,7 +29,7 @@ function draw_recursive(entity){
               core_storage_data.layer_height,
               0,
               0,
-              Math.PI * 2,
+              pie,
             ],
           ],
         });
@@ -70,6 +70,7 @@ function repo_init(){
     core_repo_init({
       'globals': {
         'last_entity': '',
+        'pie': Math.PI * 2,
         'top_layer': 0,
       },
       'events': {
